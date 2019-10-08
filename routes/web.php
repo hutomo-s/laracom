@@ -64,6 +64,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['employee'], 'as' => 'admin.
     });
 });
 
+Route::group(['prefix' => 'seeding'], function() {
+    Route::get('/', 'SeedingController@index')->name('seeding.index');
+});
+
 /**
  * Frontend routes
  */
