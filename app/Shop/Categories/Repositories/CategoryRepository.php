@@ -80,7 +80,11 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
                 $cover = $this->uploadOne($params['cover'], 'categories');
             }
 
-            $merge = $collection->merge(compact('slug', 'cover'));
+            // fix bug by butikkabel
+            if(!empty($cover))
+                $merge = $collection->merge(compact('slug', 'cover'));
+            else
+                $merge = $collection->merge(compact('slug'));
 
             $category = new Category($merge->all());
 
